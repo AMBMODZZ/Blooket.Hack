@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blooket Scripts</title>
+
+    <style>
+        /* Roblox-styled buttons */
+        .roblox-button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .roblox-button:hover {
+            background-color: dimgray;
+        }
+
+        /* Styling for the GUI container */
+        .gui-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <!-- GUI container -->
+    <div class="gui-container">
+      <body>Blooket Hack</body>
+        <!-- Buttons go here -->
+        <button id="executeScript1" class="roblox-button">Chest Esp</button>
+        <button id="executeScript2" class="roblox-button">Gold script1</button>
+        <button id="executeScript3" class="roblox-button">Gold script</button>
+    </div>
+
+    <script>
+        // Your JavaScript code snippets go here
+        // ...
+
+        // Script 1
+        document.getElementById('executeScript1').addEventListener('click', async () => {
+            // Place your first JavaScript code here
+            // Example: Alert a message
+            alert('Script 1 executed.');
+        });
+
+        // Script 2
+        document.getElementById('executeScript2').addEventListener('click', () => {
+            // Place your second JavaScript code here
+            // Example: Alert a message
+            alert('Script 2 executed.');
+        });
+
+        // Script 3
+        document.getElementById('executeScript3').addEventListener('click', () => {
+            let n = document.createElement('iframe');
+            document.body.append(n);
+            window.alert = n.contentWindow.alert.bind(window);
+            window.prompt = n.contentWindow.prompt.bind(window);
+            window.confirm = n.contentWindow.confirm.bind(window);
+            n.remove();
+
+            function reactHandler() {
+                return Object.values(document.querySelector('#app > div > div'))[1].children[1]._owner;
+            };
+
+            if (window.location.pathname != '/play/gold') {
+                alert('You must be in a gold quest game!');
+            } else {
+                let e = reactHandler(),
+                    player = prompt("Player name to set gold"),
+                    amount = Number(parseFloat(prompt("Amount to set gold to")));
+                e.memoizedProps.firebase.setVal({
+                    id: e.memoizedProps.client.hostId,
+                    path: "c/" + e.memoizedProps.client.name,
+                    val: {
+                        b: e.memoizedProps.client.blook,
+                        g: e.stateNode.state.gold,
+                        tat: player + ":swap:" + amount
+                    }
+                })
+                alert('Set gold for player:' + player + ' to ' + amount);
+            };
+        });
+    </script>
+</body>
+</html>
